@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '../store'
+import { getToken } from './auth'
 
 // Create Instance
 const fetch = axios.create({

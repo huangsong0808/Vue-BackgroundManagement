@@ -1,21 +1,8 @@
-# vue-backgroundmanagement
+# 配置
 
-> A Vue.js project
+## Eslint
 
-## Build Setup
+错误检查，编码规范，本项目中使用的配置是：(配置地址)[https://github.com/liunian1004/Eslint-Config-Vue]
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

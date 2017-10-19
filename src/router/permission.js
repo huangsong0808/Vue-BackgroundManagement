@@ -2,7 +2,7 @@ import router from '@/router'
 // import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// const whiteList = ['/login']
+const whiteList = ['/login']
 
 router.beforeEach((to, from, next) => {
     // 如果有 token
@@ -11,9 +11,14 @@ router.beforeEach((to, from, next) => {
         if (to.path === '/login') {
             next({ path: '/' })
         } else {
-            next({ ...to })
+            next()
         }
     } else {
-        next('./login')
+        // 放行 login 路径
+        if (whiteList.indexOf(to.path) !== -1) {
+            next()
+        } else {
+            next({ path: '/login' })
+        }
     }
 })

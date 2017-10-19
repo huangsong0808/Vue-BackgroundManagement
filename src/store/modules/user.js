@@ -1,5 +1,5 @@
-import { getToken, setToken } from '@/utils/auth'
-import { login } from '@/api/login'
+import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login, logout } from '@/api/login'
 
 const user = {
     state: {
@@ -14,11 +14,22 @@ const user = {
         Login({ commit }, userInfo) {
             const username = userInfo.username.trim()
             return new Promise((resolve, reject) => {
-                login(username, userInfo.password, '191.191.16.16', 'WEB').then(response => {
+                login(username, userInfo.password, 'WEB').then(response => {
                     const token = response.data.restbody.jsessionId
                     console.log('token = ', token)
                     setToken(token)
                     commit('SET_TOKEN', token)
+                    resolve()
+                }).catch(error => {
+                    reject(error)
+                })
+            })
+        },
+        LogOut({ commit, state }) {
+            return new Promise((resolve, reject) => {
+                logout().then(response => {
+                    commit('SET_TOKEN', '')
+                    removeToken()
                     resolve()
                 }).catch(error => {
                     reject(error)

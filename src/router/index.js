@@ -20,8 +20,10 @@ export const RouterMap = [
         component: Layout,
         name: 'Dashboard',
         redirect: '/dashboard',
+        hidden: true,
         children: [{ path: 'dashboard', component: _import('dashboard/Dashboard') }]
-    }
+    },
+    { path: '/login', component: _import('login/Login'), hidden: true }
 ]
 
 export default new Router({

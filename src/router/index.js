@@ -15,6 +15,8 @@ Vue.use(Router)
 **/
 
 export const RouterMap = [
+    { path: '/login', component: _import('login/Login'), hidden: true },
+    { path: '/404', component: _import('404'), hidden: true },
     {
         path: '/',
         component: Layout,
@@ -23,7 +25,16 @@ export const RouterMap = [
         hidden: true,
         children: [{ path: 'dashboard', component: _import('dashboard/Dashboard') }]
     },
-    { path: '/login', component: _import('login/Login'), hidden: true }
+    {
+        path: '/box',
+        component: Layout,
+        redirect: 'noredirect',
+        name: '盒子管理',
+        icon: false,
+        children: [
+          { path: 'index', name: 'BoxList', icon: 'zujian', component: _import('box/Box') }
+        ]
+    }
 ]
 
 export default new Router({

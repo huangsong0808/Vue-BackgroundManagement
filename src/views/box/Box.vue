@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span>waiting for design.</span>
+      123
     </div>
 </template>
 

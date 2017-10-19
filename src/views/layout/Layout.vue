@@ -1,21 +1,29 @@
 <template>
-    <div class="app-wrapper">
+    <div class="app-wrapper" :class="{ hideSidebar: sidebar.opened }">
         <div class="sidebar-wrapper">
             <sidebar class="sidebar-container"></sidebar>
         </div>
-        <div>
-        <router-view></router-view>
+        <div class="main-container">
+            <navbar></navbar>
+            <app-main></app-main>
         </div>
     </div>
 </template>
 
 <script>
-import { Sidebar } from '@/views/layout'
+import { Sidebar, AppMain, Navbar } from '@/views/layout'
 
 export default {
     name: 'layout',
     components: {
-        Sidebar
+        Sidebar,
+        AppMain,
+        Navbar
+    },
+    computed: {
+        sidebar() {
+            return this.$store.state.sidebar.sidebar
+        }
     }
 }
 </script>
@@ -27,6 +35,23 @@ export default {
         position: relative;
         height: 100%;
         width: 100%;
+        &.hideSidebar {
+            .sidebar-wrapper {
+                transform: translate(-180px, 0);
+                .sidebar-container {
+                    transform: translate(132px, 0);
+                }
+                &:hover {
+                    transform: translate(0, 0);
+                    .sidebar-container {
+                        transform: translate(0, 0);
+                    }
+                }
+            }
+            .main-container {
+                margin-left: 0px;
+            }
+        }
         .sidebar-wrapper {
             width: 180px;
             position: fixed;
@@ -45,6 +70,11 @@ export default {
             right: -17px;
             overflow: scroll;
             transition: all .28s ease-out;
+        }
+        .main-container {
+            min-height: 100%;
+            transition: all .28s ease-out;
+            margin-left: 180px;
         }
     }
 </style>
